@@ -6,25 +6,27 @@ class BusinessCard extends Component {
     return(
         <div className="businessCard">
           <div className="businessCard__logo">
-            <img src="#"/>
+            <img src={this.props.business.logoUrl}/>
           </div>
           <div className="businessCard__details">
             <div className="businessCard__promo__container">
-              <div className="businessCard__promo__alert">10% off any rental</div>
+              <div className="businessCard__business__name">{this.props.business.name}</div>
+              <div className="businessCard__promo__alert">{this.props.business.promoMessage}</div>
               <div className="businessCard__promo__code">
-                <p>Use promo code: string interpolation?</p> 
+                <p>Use promo code: <span>{this.props.business.promoCode}</span></p> 
               </div>
               <div className="businessCard__features">
-                <p>Free unlimited Mileage: this will prob
-                  be a ul where we map through the array of features
-                  and hten add in checkmark pseudoelement
-                </p>
+                <ul>
+                {this.props.business.features.map((feature) => {
+                  return <li key={feature}>{feature}</li>
+                  })}
+                </ul>
               </div>
               <div className="businessCard__view-profile">
-                <a href="#" target="_blank"> View Profile </a>
+                <a href={this.props.business.profileHref} target="_blank"> View Profile </a>
               </div>
               <div className="businessCard__cta">
-                <button type="button">Hire Labor</button> 
+                <a href={this.props.business.ctaUrl} className="button--primary" target="_blank">{this.props.business.ctaText}</a> 
               </div>
             </div>
           </div>
