@@ -1,0 +1,34 @@
+%button {
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 15px;
+  padding: $button__padding;
+  vertical-align: middle;
+  font-size: $button-font-size;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  text-align: center;
+  line-height: 1.2;
+  border-width: $button__border-width;
+}
+
+@mixin button__primary {
+  @extend %button;
+  border-color: $button__primary-border-color;
+  color: $button__primary-color;
+  background-color: $button__primary-background-color;
+  transition: all .2s ease-in-out;
+
+  @include bp($bp-medium) {
+    width: auto;
+    padding-right: 30px;
+    padding-left: 30px;
+  }
+
+  &:hover,
+  &:focus {
+    color: $button__primary-color__hover;
+    background-color: $button__primary-background-color__hover;
+    border-color: $button__primary-border-color__hover;
+  }
+}

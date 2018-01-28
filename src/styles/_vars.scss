@@ -1,0 +1,55 @@
+// These should be used with the bp (max-width, xx) mixin
+// where a min-width is used, remember to +1 to break correctly.
+
+$bp-mobile: 320px;
+$bp-small: 400px;
+$bp-medium: 767px;
+$bp-desktop: 992px;
+
+
+// Color Variables
+
+$c-gray: #e9e9e9;
+$c-dark-gray: #b9b9b9;
+$c-white: #ffffff;
+$c-blue: #428bca;
+$c-black: #000000;
+
+
+$page_background-color: $c-gray;
+
+
+// Typography Variables
+$font-weight__light: 300;
+$font-weight__normal: 500;
+$font-weight__bold: 700;
+
+$font-size__base: 14px;
+
+// Button Variables
+
+$button__primary-color: $c-white;
+$button__primary-color__hover: $c-blue;
+$button__primary-background-color: $c-blue;
+$button__primary-background-color__hover: $c-white;
+$button__border-width: 2px;
+$button__primary-border-color: $c-blue;
+$button__primary-border-color__hover: $button__primary-border-color;
+
+$button-font-size: $font-size__base - 2;
+$button__padding: 17px 0 16px 0;
+
+
+// Links Variables
+
+$link__color: $c-black;
+$link__hover-color: $c-blue;
+$link__border-bottom: 0;
+$link__border-bottom__hover: 1px solid $link__hover-color;
+$link__text-decoration: none;
+$link__font-weight: $font-weight__bold;
+
+// Card Component Variables
+
+$card-color: $c-white;
+$cta-width: 200px;
