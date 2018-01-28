@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import AddBusinessCardForm from './Components/AddBusinessCardForm';
-import BusinessCard from './Components/BusinessCard';
+import BusinessCardList from './Components/BusinessCardList';
 import './styles/styles.css';
 
 
@@ -18,8 +18,9 @@ class App extends Component {
         </header>
         <div className="component__wrapper">
           <div className='container'>
-            <BusinessCard/>
-            <BusinessCard/>
+            <BusinessCardList
+              businessData={this.props.businessData}
+            />
           </div>
         </div>
         <div className="component__form">
