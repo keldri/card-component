@@ -13,7 +13,7 @@ class BusinessCard extends Component {
               <div className="businessCard__business__name">{this.props.item.name}</div>
               <div className="businessCard__promo__alert">{this.props.item.promoMessage}</div>
               <div className="businessCard__promo__code">
-                <p>Use promo code: <span>{this.props.item.promoCode}</span></p>
+                {this.props.item.promoCode ? <p>Use promo code: <span>{this.props.item.promoCode}</span></p> : ''}
               </div>
               <div className="businessCard__features">
                 <ul>
