@@ -115,10 +115,10 @@ class App extends Component {
     this.setState({ isModalOpen: false })
   }
 
-class App extends Component {
   render() {
     return (
       <div className='app'>
+        <button className="openModal button--primary" onClick={this.openModal}>Add New Card</button>
         <header>
             <div className='component__title'>
               <h1>Card Component</h1>
@@ -127,14 +127,25 @@ class App extends Component {
         <div className="component__wrapper">
           <div className='container'>
             <BusinessCardList
-              businessData={this.props.businessData}
+              items={this.state.items}
+              features={this.state.features}
+              cardFeatures={this.state.cardFeatures}
             />
           </div>
         </div>
         <div className="component__form">
-          <div className='container'>
-            <AddBusinessCardForm/>
-          </div>
+            <Modal
+              isModalOpen={this.state.isModalOpen}
+              modalOpen={this.closeModal}
+              modalClose={this.closeModal}
+              handleChange={this.handleChange}
+              handleSubmit={this.handleSubmit}
+              handleCheck={this.handleCheck}
+              required={true}
+              features={this.state.features}
+              cardFeatures={this.state.cardFeatures}
+              checked={this.state.checked}
+            />
         </div>
       </div>
     );
