@@ -1,7 +1,6 @@
 %button {
   width: 100%;
   display: inline-block;
-  margin-bottom: 15px;
   padding: $button__padding;
   vertical-align: middle;
   font-size: $button-font-size;
@@ -14,21 +13,21 @@
 
 @mixin button__primary {
   @extend %button;
-  border-color: $button__primary-border-color;
+  border: 2px solid $button__primary-border-color;
   color: $button__primary-color;
   background-color: $button__primary-background-color;
+  text-decoration: none;
   transition: all .2s ease-in-out;
 
-  @include bp($bp-medium) {
-    width: auto;
-    padding-right: 30px;
-    padding-left: 30px;
-  }
 
+  &:visited {
+    color: $button__primary-color;
+  }
+  
   &:hover,
   &:focus {
     color: $button__primary-color__hover;
     background-color: $button__primary-background-color__hover;
-    border-color: $button__primary-border-color__hover;
+    border:2px solid $button__primary-border-color__hover;
   }
 }

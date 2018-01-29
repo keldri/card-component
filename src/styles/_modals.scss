@@ -1,0 +1,57 @@
+// Form Modal Styles 
+
+.modal {
+	display: none;
+
+	&--open {
+		display: block;
+	}
+}
+
+.modal-inner {
+    position: absolute;
+    top: 50%;
+  	left: 50%;
+  	width: 100%;
+  	max-width: $modal__max-width;
+    height: $modal__height;
+  	transform: translate(-50%, -50%);
+    z-index: 1;
+    overflow: auto;
+    background-color: $modal__background-color;
+
+    @include bp($bp-small) {
+    	height: 90%;
+    	overflow: scroll;
+    }
+}
+
+.modal__backdrop {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 3;
+    background: $modal__backdrop__background-color;
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: $link__color;
+    font-size: $modal__close__font-size;
+
+    span {
+    	font-size: 0;
+    	visibility: hidden;  
+    }
+}
+
+.close:hover,
+.close:focus {
+    color: $link__hover-color;
+    cursor: pointer;
+}

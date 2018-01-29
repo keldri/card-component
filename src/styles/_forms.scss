@@ -15,39 +15,56 @@ label,
   pointer-events: none;
 
   @include bp($bp-medium) {
-    font-size: 28px;
+    font-size: 20px;
     line-height: 1.14;
+  }
+
+  &.required {
+    &::after {
+      content: '*';
+      position: absolute;
+      color: red;
+      font-size: 14px;
+    }
   }
 }
 
-field {
+.required-message {
+  float: left;
+  margin-bottom: 10px;
+  font-size: $font-size__base - 3;
+  color: red;
+}
+
+fieldset {
+  clear: left;
+  margin-bottom: 20px;
+  padding: 0;
+  border: none;
+}
+
+.field {
   display: inline-block;
   width: 100%;
   height: 100%;
   margin-bottom: 15px;
-}
 
-.form-group {
-  padding-bottom: 40px;
-
-  &:last-of-type {
-    padding-bottom: 25px;
+  &:last-child {
+    margin-bottom: 0;
   }
 }
 
-.input-group {
-  padding: 0 10px;
-}
 
 input,
 textarea {
   width: 100%;
   height: 50px;
   border: 2px solid $c-black;
-  margin-top: 10px;
+  margin-top: 5px;
   border-radius: 0;
   appearance: none;
   box-sizing: border-box;
+  font-size: $font-size__base;
 }
 
 .custom-input {
@@ -60,31 +77,16 @@ textarea {
   }
 
   .label {
-    @extend %label;
     position: absolute;
     top: 20px;
     transition: 0.2s ease all;
 
-    @include bp($bp-medium) {
-      font-size: 28px;
-      line-height: 1.14;
-
-      span {
-        font-size: 18px;
-      }
-    }
-
-    &.label--multi-line {
-      @extend %multi-line-label;
-    }
-
     &.filled-input-label {
       top: 20px;
-      font-size: 18px;
       transition: 0.2s ease all;
 
       &.invalid {
-        color: $c-dark-grey;
+        color: $c-dark-gray;
       }
     }
 
@@ -97,8 +99,7 @@ textarea {
     display: none;
     font-size: 14px;
     line-height: 1.42;
-    font-family: $f-stack-body;
-    color: $c-error;
+    color: red;
 
     @include bp($bp-medium) {
       font-size: 18px;
@@ -118,10 +119,10 @@ textarea {
     margin-top: 20px;
     padding: 10px 10px 10px 5px;
     border: none;
-    border-bottom: 3px solid $c-dark-grey;
+    border-bottom: 3px solid $c-dark-gray;
     font-size: 20px;
     line-height: 1.2;
-    color: $c-dark-grey;
+    color: $c-dark-gray;
     text-indent: 10px;
     background-color: transparent;
 
@@ -135,12 +136,11 @@ textarea {
       outline: none;
       background-color: $c-white;
       transition: 0.2s ease all;
-      font-family: $f-stack-body;
     }
 
     &.invalid,
     &.filled-input.invalid {
-      @extend %error;
+      // @extend %error;
       transition: 0.2s ease all;
     }
 
@@ -150,63 +150,26 @@ textarea {
     }
   }
 
-  &--textarea {
-
-    textarea {
-      height: 100px;
-      margin: 0;
-
-      &.filled-input {
-        min-height: 260px;
-        padding-top: 30px;
-        outline: none;
-        background-color: $c-white;
-      }
-    }
-
-    .label {
-      top: 0;
-
-      &.filled-input-label {
-        top: 20px;
-
-        @media (max-width: 430px) {
-          top: 0;
-        }
-
-        @include bp($bp-medium) {
-          font-size: 18px;
-        }
-      }
-    }
-  }
-
-  &--radio,
   &--checkbox {
     position: relative;
     display: block;
-    padding: 20px 18px;
+    padding: 10px 0;
+    padding-left: 40px;
     margin-bottom: 15px;
     cursor: pointer;
 
     input {
       position: absolute;
-      width: 100%;
-      height: 100%;
+      left: 0;
+      width: 20px;
+      height: 20px;
       z-index: 1;
       opacity: 0;
 
       + label {
         cursor: pointer;
-        font-family: $f-stack-body;
-        font-size: 20px;
         line-height: 1.2;
-        color: $c-dark-grey;
-
-        @include bp($bp-medium) {
-          font-size: 28px;
-          line-height: 1.14;
-        }
+        color: $c-black;
 
         &:before,
         &:after {
@@ -214,139 +177,38 @@ textarea {
         }
       }
     }
-  }
 
-  &--radio {
-    input[type="radio"] {
-      + label {
-        width: 100%;
-        padding: 0;
-
-        &:before,
-        &:after {
-          display: block;
-          top: 50%;
-          left: 0;
-          background-position: center center;
-          background-repeat: no-repeat;
-          background-size: 50% 50%;
-          background-color: $c-white;
-          user-select: none;
-          border-radius: 50%;
-          transform: translateY(-50%);
-        }
-
-        &:before {
-          left: 8px;
-          width: 50px;
-          height: 50px;
-          border: 4px solid $c-dark-grey;
-          background-color: $c-white;
-          content: '';
-        }
-
-        &:after {
-          left: 15px;
-          width: 15px;
-          height: 15px;
-
-          @include bp ($bp-medium) {
-            bottom: 18px;
-          }
-        }
-
-        p {
-          padding-left: 55px;
-        }
-      }
-
-      &:checked {
-        + label {
-          &:after {
-            border: 18px solid $c-dark-grey;
-            content: '';
-          }
-        }
-      }
-    }
-
-    &--checked {
-      background-color: $c-white;
-    }
-  }
-
-  &--checkbox {
     input[type="checkbox"] {
       + label {
         &:before {
-          top: 7px;
-          left: 5px;
-          width: 30px;
-          height: 30px;
-          border: 4px solid $c-dark-grey;
+          left: 0;
+          width: 20px;
+          height: 20px;
+          border: 2px solid $c-black;
           content: '';
           background-color: $c-white;
         }
 
         &:after {
           top: 14px;
-          left: 12px;
-          width: 15px;
-          height: 15px;
+          left: 4px;
+          width: 0;
+          height: 0px;
         }
       }
 
       &:checked {
         + label {
           &:after {
-            border: 8px solid $c-dark-grey;
+            border: 8px solid $c-black;
             content: '';
           }
         }
       }
     }
   }
-
-  &--select {
-    select {
-      display: block;
-      width: 100%;
-      height: 60px;
-      padding: 10px 10px 10px 5px;
-      border-radius: 0;
-      border: none;
-      border-bottom: 3px solid $c-dark-grey;
-      outline: none;
-      font-family: $f-stack-body;
-      font-size: 20px;
-      line-height: 1.2;
-      color: $c-dark-grey;
-      background-color: transparent;
-      appearance: none;
-
-      &.validation-failed {
-        background-color: $c-error;
-      }
-    }
-
-    &:after {
-      content: '';
-      position: absolute;
-      top: 25px;
-      right: 14px;
-      width: 13px;
-      height: 13px;
-      border: solid $c-dark-grey;
-      border-width: 0 3px 3px 0;
-      transform: rotate(45deg);
-      z-index: 1;
-
-      .validation-error & {
-        margin-top: -15px;
-      }
-    }
-  }
 }
+
 .validation-advice {
   display: none;
   margin-top: 10px;
@@ -354,8 +216,7 @@ textarea {
   font-size: 18px;
   line-height: 1.2;
   letter-spacing: 0;
-  color: $c-error;
-  font-family: $f-stack-body;
+  color: red;
 }
 
 input[type="text"],

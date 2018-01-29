@@ -1,0 +1,92 @@
+// Card Component
+
+.businessCard {
+	width: 100%;
+	height: auto;
+	margin: 0;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 30px;
+	padding-bottom: 40px;
+	text-align: center;
+	background-color: $card-color;
+	box-sizing: border-box;
+
+	&__logo {
+		width: $card__logo__width;
+		min-height: 50px;
+	    margin-left: auto;
+	    margin-right: auto;
+		margin-bottom: 10px;
+
+		img {
+			width: 100%;
+		    height: 100%;
+		}
+	}
+
+	&__business__name {
+		min-height: 20px;
+		margin-bottom: 20px;
+		font-size: $card__business__name__font-size;
+		color: $card__business__name__color;
+	}
+
+	&__promo__alert {
+		margin-bottom: 5px;
+		color: $c-blue;
+		font-size: $card__promo__alert__font-size;
+		font-weight: $card__promo__alert__font-weight;
+	}
+
+	&__promo__code {
+		margin-bottom: 25px;
+
+		p {
+			margin: 0;
+			font-size: $card__promo__code__font-size;
+		}
+
+		span {
+			text-transform: uppercase;
+			font-weight: $font-weight__bold;
+		}
+	}
+
+	&__features {
+		height: 100px;
+	    margin-bottom: 50px;
+
+		li {
+			position: relative;
+			padding-left: 15px;
+
+			&::before {
+				content: url("../media/svg/checkmark.svg");
+				position: absolute;
+				left: 0;
+				width: $card__features__icon-size;
+				height: $card__features__icon-size;
+			}
+		}
+
+		@include bp($bp-desktop, max-width) {
+			display: none;
+		}
+	}
+
+	&__view-profile {
+		margin-bottom: 10px;
+		font-size: $card__view-profile;
+
+		@include bp($bp-desktop, max-width) {
+			display: none;
+		}
+	}
+
+	&__cta {
+		width: $card__cta-width;
+	    margin-left: auto;
+	    margin-right: auto;
+	}
+}
