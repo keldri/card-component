@@ -23,7 +23,6 @@ class App extends Component {
         'Expert support'
       ],
       cardFeatures: [],
-      checked: false,
       isModalOpen: false
     }
 
