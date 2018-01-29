@@ -22,7 +22,7 @@ class AddBusinessCardForm extends Component {
               </div>
               <div className="field">
                 <label htmlFor="profileUrl" className="label">Company Profile URL</label>
-                <input type="text" name="profileUrl" id="profileUrl"  onChange={this.props.handleChange} value={this.props.profileUrl} placeholder="Add Profile URL"/>
+                <input type="text" name="profileUrl" id="profileUrl"  onChange={this.props.handleChange} value={this.props.profileHref} placeholder="Add Profile URL"/>
               </div>
               <div className="field">
                 <label htmlFor="ctaUrl" className="label required">CTA URL</label>
