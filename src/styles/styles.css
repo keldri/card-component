@@ -1,3 +1,7 @@
+/* Breakpoints
+   These should be used with the bp (max-width, xx) mixin
+   where a min-width is used, remember to +1 to break correctly.
+*/
 /*doc
 ---
 title: Breakpoint Mixin
@@ -12,7 +16,6 @@ category: Other - Mixins
 .button--primary {
   width: 100%;
   display: inline-block;
-  margin-bottom: 15px;
   padding: 17px 0 16px 0;
   vertical-align: middle;
   font-size: 12px;
@@ -25,69 +28,18 @@ category: Other - Mixins
 body {
   background-color: #e9e9e9; }
 
-.app {
-  height: 100vh;
-  padding: 15px; }
-
-.component__title {
-  text-align: center; }
-  .component__title h1 {
-    margin-top: 0; }
-
-.businessCard {
-  width: 100%;
-  height: auto;
-  margin: 0;
-  padding: 30px 20px 40px;
-  text-align: center;
-  background-color: #ffffff;
-  box-sizing: border-box; }
-  @media only screen and (min-width: 992px) {
-    .businessCard {
-      max-height: 700px; } }
-  .businessCard__business__name {
-    font-size: 12px;
-    color: #b9b9b9; }
-  .businessCard__promo__alert {
-    color: #428bca;
-    font-size: 14px;
-    font-weight: 300; }
-  .businessCard__promo__code p {
-    font-size: 14px; }
-  .businessCard__promo__code span {
-    text-transform: uppercase;
-    font-weight: 700; }
-  .businessCard__features li {
-    position: relative;
-    padding-left: 15px; }
-    .businessCard__features li::before {
-      content: url("../media/svg/checkmark.svg");
-      position: absolute;
-      left: 0;
-      width: 12px;
-      height: 12px; }
-  .businessCard__view-profile {
-    margin-bottom: 10px;
-    font-size: 12px; }
-  .businessCard__cta {
-    width: 200px;
-    margin-left: auto;
-    margin-right: auto; }
-
 .button--primary {
-  border-color: #428bca;
+  border: 2px solid #428bca;
   color: #ffffff;
   background-color: #428bca;
+  text-decoration: none;
   transition: all .2s ease-in-out; }
-  @media only screen and (min-width: 767px) {
-    .button--primary {
-      width: auto;
-      padding-right: 30px;
-      padding-left: 30px; } }
+  .button--primary:visited {
+    color: #ffffff; }
   .button--primary:hover, .button--primary:focus {
     color: #428bca;
     background-color: #ffffff;
-    border-color: #428bca; }
+    border: 2px solid #428bca; }
 
 a {
   text-decoration: none;
@@ -95,6 +47,8 @@ a {
   font-weight: 700;
   border-bottom: 0;
   transition: color .2s ease-in-out; }
+  a:visited {
+    color: #000000; }
   a:hover, a:focus {
     color: #428bca;
     border-bottom: 1px solid #428bca; }
@@ -107,9 +61,87 @@ ul {
   ul li {
     margin-bottom: 5px; }
 
-.component__form {
-  padding: 20px;
+.component__title {
+  text-align: center; }
+
+.component__wrapper .container > ul {
+  display: flex;
+  flex-direction: column; }
+  @media only screen and (min-width: 600px) {
+    .component__wrapper .container > ul {
+      flex-direction: row;
+      flex-wrap: wrap; } }
+  .component__wrapper .container > ul > li {
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto; }
+    @media only screen and (min-width: 600px) {
+      .component__wrapper .container > ul > li {
+        flex-basis: calc(50% - 40px);
+        margin-left: 20px;
+        margin-right: 20px; } }
+    @media only screen and (min-width: 767px) {
+      .component__wrapper .container > ul > li {
+        flex-basis: calc(33.33% - 40px); } }
+    @media only screen and (min-width: 992px) {
+      .component__wrapper .container > ul > li {
+        max-width: 300px; } }
+    @media only screen and (min-width: 600px) {
+      .component__wrapper .container > ul > li:last-child {
+        margin-right: 0; } }
+
+.component__form form {
+  padding: 30px;
+  padding-top: 0; }
+  @media only screen and (min-width: 767px) {
+    .component__form form {
+      max-width: 500px; } }
+
+.modal {
+  display: none; }
+  .modal--open {
+    display: block; }
+
+.modal-inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  max-width: 500px;
+  height: 100vh;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  overflow: auto;
   background-color: #ffffff; }
+  @media only screen and (min-width: 600px) {
+    .modal-inner {
+      height: 90%;
+      overflow: scroll; } }
+
+.modal__backdrop {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  background: rgba(0, 0, 0, 0.77); }
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: #000000;
+  font-size: 20px; }
+  .close span {
+    font-size: 0;
+    visibility: hidden; }
+
+.close:hover,
+.close:focus {
+  color: #428bca;
+  cursor: pointer; }
 
 /* ============================================ *
 * FORMS - COMMON
@@ -128,34 +160,217 @@ label,
   @media only screen and (min-width: 767px) {
     label,
     .label {
-      font-size: 28px;
+      font-size: 20px;
       line-height: 1.14; } }
+  label.required::after,
+  .label.required::after {
+    content: '*';
+    position: absolute;
+    color: red;
+    font-size: 14px; }
 
-field {
+.required-message {
+  float: left;
+  margin-bottom: 10px;
+  font-size: 11px;
+  color: red; }
+
+fieldset {
+  clear: left;
+  margin-bottom: 20px;
+  padding: 0;
+  border: none; }
+
+.field {
   display: inline-block;
   width: 100%;
   height: 100%;
   margin-bottom: 15px; }
-
-.form-group {
-  padding-bottom: 40px; }
-  .form-group:last-of-type {
-    padding-bottom: 25px; }
-
-.input-group {
-  padding: 0 10px; }
+  .field:last-child {
+    margin-bottom: 0; }
 
 input,
 textarea {
   width: 100%;
   height: 50px;
   border: 2px solid #000000;
-  margin-top: 10px;
+  margin-top: 5px;
   border-radius: 0;
   appearance: none;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  font-size: 14px; }
+
+.custom-input {
+  position: relative; }
+  .custom-input.filled {
+    padding-top: 50px;
+    padding-bottom: 0px;
+    transition: 0.2s ease all; }
+  .custom-input .label {
+    position: absolute;
+    top: 20px;
+    transition: 0.2s ease all; }
+    .custom-input .label.filled-input-label {
+      top: 20px;
+      transition: 0.2s ease all; }
+      .custom-input .label.filled-input-label.invalid {
+        color: #b9b9b9; }
+    .custom-input .label.invalid {
+      color: #ffffff; }
+  .custom-input .validation-message {
+    display: none;
+    font-size: 14px;
+    line-height: 1.42;
+    color: red; }
+    @media only screen and (min-width: 767px) {
+      .custom-input .validation-message {
+        font-size: 18px;
+        line-height: 2; } }
+    .custom-input .validation-message.visible {
+      display: block; }
+  .custom-input input:not([type=checkbox]):not([type=radio]),
+  .custom-input textarea {
+    display: block;
+    width: 100%;
+    height: 60px;
+    margin-top: 20px;
+    padding: 10px 10px 10px 5px;
+    border: none;
+    border-bottom: 3px solid #b9b9b9;
+    font-size: 20px;
+    line-height: 1.2;
+    color: #b9b9b9;
+    text-indent: 10px;
+    background-color: transparent; }
+    @media only screen and (min-width: 767px) {
+      .custom-input input:not([type=checkbox]):not([type=radio]),
+      .custom-input textarea {
+        font-size: 28px;
+        line-height: 1.14; } }
+    .custom-input input:not([type=checkbox]):not([type=radio]).filled-input,
+    .custom-input textarea.filled-input {
+      margin-top: 0;
+      outline: none;
+      background-color: #ffffff;
+      transition: 0.2s ease all; }
+    .custom-input input:not([type=checkbox]):not([type=radio]).invalid, .custom-input input:not([type=checkbox]):not([type=radio]).filled-input.invalid,
+    .custom-input textarea.invalid,
+    .custom-input textarea.filled-input.invalid {
+      transition: 0.2s ease all; }
+    .custom-input input:not([type=checkbox]):not([type=radio]).invalid + label,
+    .custom-input textarea.invalid + label {
+      padding-left: 10px;
+      color: #ffffff; }
+  .custom-input--checkbox {
+    position: relative;
+    display: block;
+    padding: 10px 0;
+    padding-left: 40px;
+    margin-bottom: 15px;
+    cursor: pointer; }
+    .custom-input--checkbox input {
+      position: absolute;
+      left: 0;
+      width: 20px;
+      height: 20px;
+      z-index: 1;
+      opacity: 0; }
+      .custom-input--checkbox input + label {
+        cursor: pointer;
+        line-height: 1.2;
+        color: #000000; }
+        .custom-input--checkbox input + label:before, .custom-input--checkbox input + label:after {
+          position: absolute; }
+    .custom-input--checkbox input[type="checkbox"] + label:before {
+      left: 0;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #000000;
+      content: '';
+      background-color: #ffffff; }
+    .custom-input--checkbox input[type="checkbox"] + label:after {
+      top: 14px;
+      left: 4px;
+      width: 0;
+      height: 0px; }
+    .custom-input--checkbox input[type="checkbox"]:checked + label:after {
+      border: 8px solid #000000;
+      content: ''; }
+
+.validation-advice {
+  display: none;
+  margin-top: 10px;
+  padding-bottom: 10px;
+  font-size: 18px;
+  line-height: 1.2;
+  letter-spacing: 0;
+  color: red; }
 
 input[type="text"],
 input[type="email"],
 input[type="number"] {
   padding: 10px 10px 10px 5px; }
+
+.businessCard {
+  width: 100%;
+  height: auto;
+  margin: 0;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 30px;
+  padding-bottom: 40px;
+  text-align: center;
+  background-color: #ffffff;
+  box-sizing: border-box; }
+  .businessCard__logo {
+    width: 150px;
+    min-height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px; }
+    .businessCard__logo img {
+      width: 100%;
+      height: 100%; }
+  .businessCard__business__name {
+    min-height: 20px;
+    margin-bottom: 20px;
+    font-size: 12px;
+    color: #b9b9b9; }
+  .businessCard__promo__alert {
+    margin-bottom: 5px;
+    color: #428bca;
+    font-size: 14px;
+    font-weight: 300; }
+  .businessCard__promo__code {
+    margin-bottom: 25px; }
+    .businessCard__promo__code p {
+      margin: 0;
+      font-size: 14px; }
+    .businessCard__promo__code span {
+      text-transform: uppercase;
+      font-weight: 700; }
+  .businessCard__features {
+    height: 100px;
+    margin-bottom: 50px; }
+    .businessCard__features li {
+      position: relative;
+      padding-left: 15px; }
+      .businessCard__features li::before {
+        content: url("../media/svg/checkmark.svg");
+        position: absolute;
+        left: 0;
+        width: 12px;
+        height: 12px; }
+    @media only screen and (max-width: 992px) {
+      .businessCard__features {
+        display: none; } }
+  .businessCard__view-profile {
+    margin-bottom: 10px;
+    font-size: 12px; }
+    @media only screen and (max-width: 992px) {
+      .businessCard__view-profile {
+        display: none; } }
+  .businessCard__cta {
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto; }

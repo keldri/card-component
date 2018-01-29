@@ -1,21 +1,20 @@
-// These should be used with the bp (max-width, xx) mixin
-// where a min-width is used, remember to +1 to break correctly.
+/* Breakpoints
+   These should be used with the bp (max-width, xx) mixin
+   where a min-width is used, remember to +1 to break correctly.
+*/
 
 $bp-mobile: 320px;
-$bp-small: 400px;
+$bp-small: 600px;
 $bp-medium: 767px;
 $bp-desktop: 992px;
 
 
 // Color Variables
-
 $c-gray: #e9e9e9;
 $c-dark-gray: #b9b9b9;
 $c-white: #ffffff;
 $c-blue: #428bca;
 $c-black: #000000;
-
-
 $page_background-color: $c-gray;
 
 
@@ -26,8 +25,8 @@ $font-weight__bold: 700;
 
 $font-size__base: 14px;
 
-// Button Variables
 
+// Button Variables
 $button__primary-color: $c-white;
 $button__primary-color__hover: $c-blue;
 $button__primary-background-color: $c-blue;
@@ -49,7 +48,30 @@ $link__border-bottom__hover: 1px solid $link__hover-color;
 $link__text-decoration: none;
 $link__font-weight: $font-weight__bold;
 
-// Card Component Variables
+
+// Business Card Component Variables
 
 $card-color: $c-white;
-$cta-width: 200px;
+$card__logo__width: 150px;
+
+$card__business__name__color: $c-dark-gray;
+$card__business__name__font-size: $font-size__base - 2;
+
+$card__promo__alert__font-size: $font-size__base;
+$card__promo__alert__font-weight: $font-weight__light;
+$card__promo__code__font-size: $font-size__base;
+
+$card__features__icon-size: 12px;
+$card__view-profile: $font-size__base - 2;
+
+$card__cta-width: 150px;
+
+// Modal Variables 
+
+$modal__max-width: 500px;
+$modal__height: 100vh;
+$modal__background-color: $c-white;
+$modal__backdrop__background-color: rgba(0, 0, 0, 0.77);
+$modal__close__font-size: 20px;
+
+$form__max-width: 500px;

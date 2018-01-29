@@ -1,87 +1,10 @@
 // Page Layout styles
+
 body {
 	background-color: $page_background-color;
 }
 
-.app {
-	height: 100vh;
-	padding: 15px;
-}
-
-.component__title {
-	text-align: center;
-
-	h1 {
-		margin-top: 0;
-	}
-}
-
-// Card Component
-
-.businessCard {
-	width: 100%;
-	height: auto;
-	margin: 0;
-	padding: 30px 20px 40px;
-	text-align: center;
-	background-color: $card-color;
-	box-sizing: border-box;
-
-	@include bp($bp-desktop) {
-		max-height: 700px
-	}
-
-	&__business__name {
-		font-size: $font-size__base - 2;
-		color: $c-dark-gray;
-	}
-
-	&__promo__alert {
-		color: $c-blue;
-		font-size: $font-size__base;
-		font-weight: $font-weight__light;
-	}
-
-	&__promo__code {
-		p {
-			font-size: $font-size__base;
-		}
-
-		span {
-			text-transform: uppercase;
-			font-weight: $font-weight__bold;
-		}
-	}
-
-	&__features {
-		li {
-			position:relative;
-			padding-left: 15px;
-
-			&::before {
-				content: url("../media/svg/checkmark.svg");
-				position: absolute;
-				left: 0;
-				width: 12px;
-				height: 12px;
-			}
-		}
-	}
-
-	&__view-profile {
-		margin-bottom: 10px;
-		font-size: $font-size__base - 2;
-	}
-
-	&__cta {
-		width: $cta-width;
-	    margin-left: auto;
-	    margin-right: auto;
-	}
-}
-
 // Buttons
-
 .button {
   &--primary {
     @include button--primary;
@@ -89,7 +12,6 @@ body {
 }
 
 // Links 
-
 a {
   text-decoration: $link__text-decoration;
   color: $link__color;
@@ -97,15 +19,18 @@ a {
   border-bottom: $link__border-bottom;
   transition: color .2s ease-in-out;
 
+  &:visited {
+  	color: $link__color;
+  }
+
   &:hover,
-  &:focus {
-    color: $link__hover-color;
-    border-bottom: $link__border-bottom__hover;
+  &:focus  {
+	color: $link__hover-color;
+  	border-bottom: $link__border-bottom__hover;
   }
 }
 
 // List styles
-
 ul {
 	padding: 0;
 	list-style: none;
@@ -117,9 +42,56 @@ ul {
 	}
 }
 
-// Card Form
+.component__title {
+	text-align: center;
+}
 
+.component__wrapper .container {
+	> ul {
+		display: flex;
+		flex-direction: column;
+
+		@include bp($bp-small) {
+			flex-direction: row;
+			flex-wrap: wrap;
+		}
+
+		> li {
+			margin-bottom: 20px;
+			margin-left: auto;
+		    margin-right: auto;
+
+			@include bp($bp-small) {
+				flex-basis: calc(50% - 40px);
+			    margin-left: 20px;
+			    margin-right: 20px;
+			}
+
+			@include bp($bp-medium) {
+				flex-basis: calc(33.33% - 40px);
+			}
+
+			@include bp($bp-desktop) {
+				max-width: 300px;
+			}
+
+			&:last-child {
+				@include bp($bp-small) {
+					margin-right: 0;
+				}
+			}
+		}
+	}
+}
+
+// Add Card Form
 .component__form {
-    padding: 20px;
-	background-color: $c-white;
+    form {
+    	padding: 30px;
+	    padding-top: 0;
+
+    	@include bp($bp-medium) {
+    		max-width: $form__max-width;
+    	}
+    }
 }
