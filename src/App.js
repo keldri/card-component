@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import firebase from './firebase.js';
 import AddBusinessCardForm from './Components/AddBusinessCardForm';
 import BusinessCardList from './Components/BusinessCardList';
-import './styles/styles.css';
+import Modal from './Components/Modal';
 
 
 
