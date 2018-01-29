@@ -3,19 +3,18 @@ import BusinessCard from './BusinessCard';
 
 class BusinessCardList extends Component {
   render() {
-
-    return(
-      <ul>
-        {this.props.businessData.map((business) => {
-          return <li key={business.name} className="businessCard__container">
+  return(
+    <ul>
+      {this.props.items.map((item) => {
+        return (
+          <li key={item.name}>
             <BusinessCard
-              business={business}
+              item={item}
             />
           </li>
-        })}
-      </ul>
-    )
-  }
-}
-
+        )
+      })}
+    </ul>
+  )
+}}
 export default BusinessCardList;
