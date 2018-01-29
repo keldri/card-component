@@ -4,6 +4,28 @@ import AddBusinessCardForm from './Components/AddBusinessCardForm';
 import BusinessCardList from './Components/BusinessCardList';
 import Modal from './Components/Modal';
 
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      ctaUrl: '',
+      ctaText: '',
+      logoUrl: '',
+      promoMessage: '',
+      promoCode: '',
+      name: '',
+      profileHref: '',
+      items: [],
+      features: [
+        'Free unlimited mileage on one-way rentals',
+        '24/7 roadside assistance',
+        'Flexible reservation and cancellation policies',
+        'Expert support'
+      ],
+      cardFeatures: [],
+      checked: false,
+      isModalOpen: false
+    }
 
 
 class App extends Component {
