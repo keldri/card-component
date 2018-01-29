@@ -14,7 +14,7 @@
 
 	&__logo {
 		width: $card__logo__width;
-		min-height: 50px;
+		height: $card__logo__height;
 	    margin-left: auto;
 	    margin-right: auto;
 		margin-bottom: 10px;
@@ -40,7 +40,7 @@
 	}
 
 	&__promo__code {
-		margin-bottom: 25px;
+		height: $card__promo__code__height;
 
 		p {
 			margin: 0;
